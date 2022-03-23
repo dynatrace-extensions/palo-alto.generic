@@ -1,0 +1,41 @@
+{
+  "metadata":{
+    "configurationVersions":[6],
+    "clusterVersion":"1.238.0.20220302-210739"
+  },
+  "id":"19a57df0-d6c7-490e-8014-6f18cbadc3ba",
+  "metricId":"com.dynatrace.extension.palo-alto.generic.sensor.value",
+  "name":"Palo-Alto temperature alert",
+  "description":"The {metricname} value of {severity} was {alert_condition} your custom threshold of {threshold}.",
+  "aggregationType":"MAX",
+  "severity":"CUSTOM_ALERT",
+  "enabled":true,
+  "disabledReason":"NONE",
+  "warningReason":"NONE",
+  "metricDimensions":[{
+    "filterType":"STRING",
+    "key":"sensor.unit_suffix",
+    "name":null,
+    "index":null,
+    "textFilter":{
+      "value":"(C)",
+      "operator":"EQUALS"
+    }}],
+  "monitoringStrategy":{
+    "type":"STATIC_THRESHOLD",
+    "samples":5,
+    "violatingSamples":2,
+    "dealertingSamples":5,
+    "alertCondition":"ABOVE",
+    "alertingOnMissingData":false,
+    "threshold":50.0,
+    "unit":"UNSPECIFIED"
+  },
+  "alertCondition":"ABOVE",
+  "samples":5,
+  "violatingSamples":2,
+  "dealertingSamples":5,
+  "threshold":50.0,
+  "unit":"UNSPECIFIED",
+  "eventType":"CUSTOM_ALERT"
+}

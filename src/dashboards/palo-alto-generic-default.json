@@ -1,0 +1,901 @@
+{
+  "metadata": {
+    "configurationVersions": [
+      5
+    ],
+    "clusterVersion": "1.236.0.20220131-131544"
+  },
+  "id": "4bf37ff7-bdc3-485f-b61b-50cbb8c9b0b0",
+  "dashboardMetadata": {
+    "name": "Generic Palo Alto",
+    "shared": false,
+    "owner": "olgierd.kasprowicz@dynatrace.com"
+  },
+  "tiles": [
+    {
+      "name": "Device list",
+      "tileType": "MARKDOWN",
+      "configured": true,
+      "bounds": {
+        "top": 0,
+        "left": 0,
+        "width": 1292,
+        "height": 40
+      },
+      "tileFilter": {},
+      "markdown": "[List of monitored device instances](/ui/entity/list/palo-alto:device)"
+    },
+    {
+        "name": "Devices",
+        "tileType": "DATA_EXPLORER",
+        "configured": true,
+        "bounds": {
+            "top": 40,
+            "left": 0,
+            "width": 1292,
+            "height": 260
+        },
+        "tileFilter": {},
+        "customName": "Instances",
+        "queries": [
+            {
+                "id": "A",
+                "spaceAggregation": "AVG",
+                "timeAggregation": "DEFAULT",
+                "metricSelector": "com.dynatrace.extension.palo-alto.generic.cpu.system.utilization:splitBy(\"dt.entity.palo-alto:device\"):avg:auto:sort(value(avg,descending)):limit(10)",
+                "enabled": true
+            }
+        ],
+        "visualConfig": {
+            "type": "TABLE",
+            "global": {
+                "theme": "DEFAULT",
+                "threshold": {
+                    "axisTarget": "LEFT",
+                    "columnId": "Percent of used processor time",
+                    "rules": [
+                        {
+                            "color": "#7dc540"
+                        },
+                        {
+                            "color": "#f5d30f"
+                        },
+                        {
+                            "color": "#dc172a"
+                        }
+                    ]
+                },
+                "seriesType": "LINE"
+            },
+            "rules": [],
+            "axes": {
+                "xAxis": {
+                    "visible": true
+                },
+                "yAxes": []
+            }
+        }
+    },
+     {
+      "name": "Interfaces list",
+      "tileType": "MARKDOWN",
+      "configured": true,
+      "bounds": {
+        "top": 300,
+        "left": 0,
+        "width": 646,
+        "height": 40
+      },
+      "tileFilter": {},
+      "markdown": "[List of monitored Interface instances](/ui/entity/list/palo-alto:interface)"
+    },
+    {
+        "name": "Interface Instances",
+        "tileType": "DATA_EXPLORER",
+        "configured": true,
+        "bounds": {
+            "top": 340,
+            "left": 0,
+            "width": 646,
+            "height": 260
+        },
+        "tileFilter": {},
+        "customName": "Instances",
+        "queries": [
+            {
+                "id": "A",
+                "spaceAggregation": "AVG",
+                "timeAggregation": "DEFAULT",
+                "metricSelector": "func:com.dynatrace.extension.palo-alto.generic.if.in.octets.bitpersec:splitBy(\"dt.entity.palo-alto:interface\"):avg:auto:sort(value(avg,descending)):limit(10)",
+                "enabled": true
+            }
+        ],
+        "visualConfig": {
+            "type": "TABLE",
+            "global": {
+                "theme": "DEFAULT",
+                "threshold": {
+                    "axisTarget": "LEFT",
+                    "columnId": "Percent of used processor time",
+                    "rules": [
+                        {
+                            "color": "#7dc540"
+                        },
+                        {
+                            "color": "#f5d30f"
+                        },
+                        {
+                            "color": "#dc172a"
+                        }
+                    ]
+                },
+                "seriesType": "LINE"
+            },
+            "rules": [],
+            "axes": {
+                "xAxis": {
+                    "visible": true
+                },
+                "yAxes": []
+            }
+        }
+    },
+    {
+      "name": "Virtual System List",
+      "tileType": "MARKDOWN",
+      "configured": true,
+      "bounds": {
+        "top": 300,
+        "left": 646,
+        "width": 646,
+        "height": 40
+      },
+      "tileFilter": {},
+      "markdown": "[List of monitored Virtual System instances](/ui/entity/list/palo-alto:virtual_system)"
+    },
+    {
+      "name": "Virtual System Instances",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 340,
+        "left": 646,
+        "width": 646,
+        "height": 260
+      },
+      "tileFilter": {},
+      "customName": "Data explorer results",
+      "queries": [
+        {
+          "id": "A",
+          "spaceAggregation": "SUM",
+          "timeAggregation": "DEFAULT",
+          "metricSelector": "com.dynatrace.extension.palo-alto.generic.vsys.sessions.active:splitBy(\"dt.entity.palo-alto:virtual_system\"):avg:auto:sort(value(avg,descending)):limit(10)",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "TABLE",
+        "global": {
+          "theme": "DEFAULT",
+          "threshold": {
+            "axisTarget": "LEFT",
+            "rules": [
+              {
+                "color": "#7dc540"
+              },
+              {
+                "color": "#f5d30f"
+              },
+              {
+                "color": "#dc172a"
+              }
+            ]
+          },
+          "seriesType": "LINE"
+        },
+        "rules": [],
+        "axes": {
+          "xAxis": {
+            "visible": true
+          },
+          "yAxes": []
+        }
+      }
+    },
+    {
+      "name": "Traffic",
+      "tileType": "HEADER",
+      "configured": true,
+      "bounds": {
+        "top": 600,
+        "left": 0,
+        "width": 1292,
+        "height": 40
+      },
+      "tileFilter": {}
+    },
+    {
+      "name": "Ingress",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 640,
+        "left": 0,
+        "width": 646,
+        "height": 300
+      },
+      "tileFilter": {},
+      "customName": "Data explorer results",
+      "queries": [
+        {
+          "id": "A",
+          "spaceAggregation": "SUM",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "sys.name"
+          ],
+          "metricSelector": "func:com.dynatrace.extension.palo-alto.generic.if.in.octets.bitpersec:splitBy(\"sys.name\"):sum:auto:sort(value(avg,descending)):limit(20)",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "GRAPH_CHART",
+        "global": {
+          "theme": "DEFAULT",
+          "threshold": {
+            "axisTarget": "LEFT",
+            "rules": [
+              {
+                "color": "#7dc540"
+              },
+              {
+                "color": "#f5d30f"
+              },
+              {
+                "color": "#dc172a"
+              }
+            ]
+          },
+          "seriesType": "LINE"
+        },
+        "rules": [
+          {
+            "matcher": "A:",
+            "properties": {
+              "seriesType": "LINE"
+            }
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "visible": true
+          },
+          "yAxes": []
+        }
+      }
+    },
+    {
+      "name": "Egress",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 640,
+        "left": 646,
+        "width": 646,
+        "height": 300
+      },
+      "tileFilter": {},
+      "customName": "Data explorer results",
+      "queries": [
+        {
+          "id": "A",
+          "spaceAggregation": "SUM",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "sys.name"
+          ],
+          "metricSelector": "func:com.dynatrace.extension.palo-alto.generic.if.out.octets.bitpersec:splitBy(\"sys.name\"):sum:auto:sort(value(avg,descending)):limit(20)",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "GRAPH_CHART",
+        "global": {
+          "theme": "DEFAULT",
+          "threshold": {
+            "axisTarget": "LEFT",
+            "rules": [
+              {
+                "color": "#7dc540"
+              },
+              {
+                "color": "#f5d30f"
+              },
+              {
+                "color": "#dc172a"
+              }
+            ]
+          },
+          "seriesType": "LINE"
+        },
+        "rules": [
+          {
+            "matcher": "A:",
+            "properties": {
+              "seriesType": "LINE"
+            }
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "visible": true
+          },
+          "yAxes": []
+        }
+      }
+    },
+    {
+      "name": "Gateway",
+      "tileType": "HEADER",
+      "configured": true,
+      "bounds": {
+        "top": 940,
+        "left": 0,
+        "width": 1292,
+        "height": 40
+      },
+      "tileFilter": {}
+    },
+    {
+      "name": "Active sessions",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 980,
+        "left": 0,
+        "width": 646,
+        "height": 260
+      },
+      "tileFilter": {},
+      "customName": "Data explorer results",
+      "queries": [
+        {
+          "id": "A",
+          "metric": "com.dynatrace.extension.palo-alto.generic.sessions.icmp",
+          "spaceAggregation": "AVG",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "sys.name"
+          ],
+          "enabled": true
+        },
+        {
+          "id": "B",
+          "metric": "com.dynatrace.extension.palo-alto.generic.sessions.tcp",
+          "spaceAggregation": "AVG",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "sys.name"
+          ],
+          "enabled": true
+        },
+        {
+          "id": "C",
+          "metric": "com.dynatrace.extension.palo-alto.generic.sessions.udp",
+          "spaceAggregation": "AVG",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "sys.name"
+          ],
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "GRAPH_CHART",
+        "global": {
+          "theme": "ROYALBLUE",
+          "threshold": {
+            "axisTarget": "LEFT",
+            "columnId": "com.dynatrace.extension.palo-alto.generic.sys.uptime.count:fold:splitBy(\"com.dynatrace.extension.palo-alto.generic.sys.name\"):sum:auto:sort(value(avg,descending)):limit(100)",
+            "rules": [
+              {
+                "color": "#7dc540"
+              },
+              {
+                "color": "#f5d30f"
+              },
+              {
+                "color": "#dc172a"
+              }
+            ]
+          },
+          "seriesType": "LINE"
+        },
+        "rules": [
+          {
+            "matcher": "A:",
+            "properties": {
+              "color": "PURPLE",
+              "seriesType": "LINE"
+            }
+          },
+          {
+            "matcher": "B:",
+            "properties": {
+              "seriesType": "LINE"
+            }
+          },
+          {
+            "matcher": "C:",
+            "properties": {
+              "seriesType": "LINE"
+            }
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "visible": true
+          },
+          "yAxes": []
+        }
+      }
+    },
+    {
+      "name": "Active tunnels",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 980,
+        "left": 646,
+        "width": 646,
+        "height": 260
+      },
+      "tileFilter": {},
+      "customName": "Data explorer results",
+      "queries": [
+        {
+          "id": "A",
+          "metric": "com.dynatrace.extension.palo-alto.generic.tunnels.active",
+          "spaceAggregation": "SUM",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "sys.name"
+          ],
+          "metricSelector": "com.dynatrace.\"palo-alto\".generic.\"active_tunnels\":splitBy(\"com.dynatrace.extension.palo-alto.generic.sys.name\"):sum:auto:sort(value(avg,descending)):limit(20)",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "GRAPH_CHART",
+        "global": {
+          "theme": "DEFAULT",
+          "threshold": {
+            "axisTarget": "LEFT",
+            "rules": [
+              {
+                "color": "#7dc540"
+              },
+              {
+                "color": "#f5d30f"
+              },
+              {
+                "color": "#dc172a"
+              }
+            ]
+          },
+          "seriesType": "LINE"
+        },
+        "rules": [],
+        "axes": {
+          "xAxis": {
+            "visible": true
+          },
+          "yAxes": []
+        }
+      }
+    },
+    {
+      "name": "Errors",
+      "tileType": "HEADER",
+      "configured": true,
+      "bounds": {
+        "top": 1240,
+        "left": 0,
+        "width": 1292,
+        "height": 40
+      },
+      "tileFilter": {}
+    },
+    {
+      "name": "Ingress errors",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 1280,
+        "left": 0,
+        "width": 304,
+        "height": 300
+      },
+      "tileFilter": {},
+      "customName": "Data explorer results",
+      "queries": [
+        {
+          "id": "A",
+          "metric": "com.dynatrace.extension.palo-alto.generic.if.in.err.count",
+          "spaceAggregation": "AVG",
+          "timeAggregation": "DEFAULT",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "GRAPH_CHART",
+        "global": {
+          "theme": "DEFAULT",
+          "threshold": {
+            "axisTarget": "LEFT",
+            "rules": [
+              {
+                "value": 0,
+                "color": "#7dc540"
+              },
+              {
+                "value": 1,
+                "color": "#f5d30f"
+              },
+              {
+                "value": 100,
+                "color": "#dc172a"
+              }
+            ]
+          },
+          "seriesType": "LINE"
+        },
+        "rules": [
+          {
+            "matcher": "A:",
+            "properties": {
+              "seriesType": "LINE"
+            }
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "visible": true
+          },
+          "yAxes": []
+        }
+      }
+    },
+    {
+      "name": "Ingress Discards",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 1280,
+        "left": 304,
+        "width": 342,
+        "height": 300
+      },
+      "tileFilter": {},
+      "customName": "Data explorer results",
+      "queries": [
+        {
+          "id": "A",
+          "metric": "com.dynatrace.extension.palo-alto.generic.if.in.discards.count",
+          "spaceAggregation": "AVG",
+          "timeAggregation": "DEFAULT",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "GRAPH_CHART",
+        "global": {
+          "theme": "DEFAULT",
+          "threshold": {
+            "axisTarget": "LEFT",
+            "rules": [
+              {
+                "value": 0,
+                "color": "#7dc540"
+              },
+              {
+                "value": 1,
+                "color": "#f5d30f"
+              },
+              {
+                "value": 100,
+                "color": "#dc172a"
+              }
+            ]
+          },
+          "seriesType": "LINE"
+        },
+        "rules": [
+          {
+            "matcher": "A:",
+            "properties": {
+              "seriesType": "LINE"
+            }
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "visible": true
+          },
+          "yAxes": []
+        }
+      }
+    },
+    {
+      "name": "Egress errors",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 1280,
+        "left": 646,
+        "width": 304,
+        "height": 300
+      },
+      "tileFilter": {},
+      "customName": "Data explorer results",
+      "queries": [
+        {
+          "id": "A",
+          "metric": "com.dynatrace.extension.palo-alto.generic.if.out.err.count",
+          "spaceAggregation": "AVG",
+          "timeAggregation": "DEFAULT",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "GRAPH_CHART",
+        "global": {
+          "theme": "DEFAULT",
+          "threshold": {
+            "axisTarget": "LEFT",
+            "rules": [
+              {
+                "value": 0,
+                "color": "#7dc540"
+              },
+              {
+                "value": 1,
+                "color": "#f5d30f"
+              },
+              {
+                "value": 100,
+                "color": "#dc172a"
+              }
+            ]
+          },
+          "seriesType": "LINE"
+        },
+        "rules": [
+          {
+            "matcher": "A:",
+            "properties": {
+              "seriesType": "LINE"
+            }
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "visible": true
+          },
+          "yAxes": []
+        }
+      }
+    },
+    {
+      "name": "Egress discards",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 1280,
+        "left": 950,
+        "width": 342,
+        "height": 300
+      },
+      "tileFilter": {},
+      "customName": "Data explorer results",
+      "queries": [
+        {
+          "id": "A",
+          "metric": "com.dynatrace.extension.palo-alto.generic.if.out.discards.count",
+          "spaceAggregation": "AVG",
+          "timeAggregation": "DEFAULT",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "GRAPH_CHART",
+        "global": {
+          "theme": "DEFAULT",
+          "threshold": {
+            "axisTarget": "LEFT",
+            "rules": [
+              {
+                "value": 0,
+                "color": "#7dc540"
+              },
+              {
+                "value": 1,
+                "color": "#f5d30f"
+              },
+              {
+                "value": 100,
+                "color": "#dc172a"
+              }
+            ]
+          },
+          "seriesType": "LINE"
+        },
+        "rules": [
+          {
+            "matcher": "A:",
+            "properties": {
+              "seriesType": "LINE"
+            }
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "visible": true
+          },
+          "yAxes": []
+        }
+      }
+    },
+    {
+      "name": "Hardware",
+      "tileType": "HEADER",
+      "configured": true,
+      "bounds": {
+        "top": 1580,
+        "left": 0,
+        "width": 1292,
+        "height": 40
+      },
+      "tileFilter": {}
+    },
+    {
+      "name": "CPUs",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 1620,
+        "left": 0,
+        "width": 646,
+        "height": 300
+      },
+      "tileFilter": {},
+      "customName": "Data explorer results",
+      "queries": [
+        {
+          "id": "A",
+          "metric": "com.dynatrace.extension.palo-alto.generic.cpu.management.utilization",
+          "spaceAggregation": "AVG",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "sys.name"
+          ],
+          "metricSelector": "com.dynatrace.\"palo-alto\".generic.\"cpu_management\":splitBy(\"sys.name\"):avg:auto:sort(value(avg,descending)):limit(20)",
+          "enabled": true
+        },
+        {
+          "id": "B",
+          "metric": "com.dynatrace.extension.palo-alto.generic.cpu.system.utilization",
+          "spaceAggregation": "AVG",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "sys.name"
+          ],
+          "metricSelector": "com.dynatrace.\"palo-alto\".generic.\"cpu_system\":splitBy(\"sys.name\"):avg:auto:sort(value(avg,descending)):limit(20)",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "GRAPH_CHART",
+        "global": {
+          "theme": "DEFAULT",
+          "threshold": {
+            "axisTarget": "LEFT",
+            "columnId": "com.dynatrace.extension.palo-alto.generic.sys.uptime.count:fold:splitBy(\"sys.name\"):sum:auto:sort(value(avg,descending)):limit(100)",
+            "rules": [
+              {
+                "value": 0,
+                "color": "#7dc540"
+              },
+              {
+                "value": 80,
+                "color": "#f5d30f"
+              },
+              {
+                "value": 90,
+                "color": "#dc172a"
+              }
+            ]
+          },
+          "seriesType": "LINE"
+        },
+        "rules": [
+          {
+            "matcher": "A:",
+            "properties": {
+              "color": "PURPLE",
+              "seriesType": "LINE"
+            }
+          },
+          {
+            "matcher": "B:",
+            "properties": {
+              "color": "ROYALBLUE",
+              "seriesType": "LINE"
+            }
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "visible": true
+          },
+          "yAxes": []
+        }
+      }
+    },
+    {
+      "name": "Memory used",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 1620,
+        "left": 646,
+        "width": 646,
+        "height": 300
+      },
+      "tileFilter": {},
+      "customName": "Data explorer results",
+      "queries": [
+        {
+          "id": "A",
+          "metric": "com.dynatrace.extension.palo-alto.generic.mem.used",
+          "spaceAggregation": "SUM",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "sys.name"
+          ],
+          "metricSelector": "com.dynatrace.\"palo-alto\".generic.\"mem_used\":splitBy(\"com.dynatrace.extension.palo-alto.generic.sys.name\"):sum:auto:sort(value(avg,descending)):limit(20)",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "GRAPH_CHART",
+        "global": {
+          "theme": "DEFAULT",
+          "threshold": {
+            "axisTarget": "LEFT",
+            "rules": [
+              {
+                "color": "#7dc540"
+              },
+              {
+                "color": "#f5d30f"
+              },
+              {
+                "color": "#dc172a"
+              }
+            ]
+          },
+          "seriesType": "LINE"
+        },
+        "rules": [],
+        "axes": {
+          "xAxis": {
+            "visible": true
+          },
+          "yAxes": []
+        }
+      }
+    }
+  ]
+}
