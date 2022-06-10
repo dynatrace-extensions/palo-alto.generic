@@ -46,10 +46,23 @@ let
       dtcli # set of devtools
       pyyaml
     ];
-  snmpDatasource = import ./go-datasource.nix {
-    tech = "snmp";
-    rev = "6c3a27cd513343fd43c93a93d6c6e2f3ed284a41";
-    inherit pkgs;
+  commonMake = with pkgs; stdenv.mkDerivation rec {
+    version = "7a34142faa0fc15b3c3d6653cb19bb825f9efe77";
+    name = "commonMake-${version}";
+    src = builtins.fetchGit {
+      url = "https://github.com/dynatrace-extensions/toolz.git";
+      ref = "main";
+      rev = version;
+    };
+
+    # TODO: how to better merge it into the environment?
+    installPhase = ''
+      install -m755 -D common.mk $out/bin/__dt_ext_common_make
+    '';
+
+    meta = with lib; {
+      platforms = platforms.linux;
+    };
   };
   pythonCore = pkgs.python38;
   myPython = pythonCore.withPackages pythonPkgs;
@@ -69,6 +82,7 @@ let
       openssl
       myPython
       entr
+      commonMake
 
       # datasources
       # temporary disabled, until we figure out how to share it properly
