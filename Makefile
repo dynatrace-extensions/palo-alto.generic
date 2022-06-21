@@ -19,9 +19,11 @@ include $(shell which __dt_ext_common_make)
 # ###############
 .PHONY: lint test
 
-lint: ## run static analysis
-	yq < $(_ENTRYPOINT) . > /dev/null
-	@# TODO: lint against the actual schema
+lint: extension.json ## run static analysis
+	validate-schema --instance extension.json $(shell dirname $$(which __dt_cluster_schema))/../schemas
+
+extension.json: $(_ENTRYPOINT)
+	yq < $(_ENTRYPOINT) > $@
 
 test: ## run all tests
 	@echo "Not implemented"; false

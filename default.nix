@@ -2,7 +2,7 @@ let
   nixpkgs = builtins.fetchGit {
     url = "https://github.com/nixos/nixpkgs-channels/";
     ref = "refs/heads/nixos-unstable";
-    rev = "daaa0e33505082716beb52efefe3064f0332b521";
+    rev = "e10da1c7f542515b609f8dfbcf788f3d85b14936";
     # obtain via `git ls-remote https://github.com/nixos/nixpkgs-channels nixos-unstable`
   };
   pkgs = import nixpkgs { config = {}; };
@@ -28,23 +28,11 @@ let
 
       buildInputs = [ click ];
   };
-  dtcli = with pkgs.python38Packages; buildPythonPackage rec {
-      pname = "dt-cli";
-      version = "0.0.9a0";
-
-      src = fetchPypi{
-        inherit version;
-        inherit pname;
-        sha256 = "17v90ykiph88dz1pxl801dpv6lc2ajsxns460zjjwbqpi9x2p1bv";
-      };
-
-      propagatedBuildInputs = [ pyyaml asn1crypto click click-aliases cryptography ];
-  };
   pythonPkgs = python-packages: with python-packages; [
       ptpython # used for dev
       markdown-table # for building docs
-      dtcli # set of devtools
       pyyaml
+      jsonschema
     ];
   commonMake = with pkgs; stdenv.mkDerivation rec {
     version = "7a34142faa0fc15b3c3d6653cb19bb825f9efe77";
@@ -64,6 +52,23 @@ let
       platforms = platforms.linux;
     };
   };
+  dtClusterSchema = with pkgs; stdenv.mkDerivation rec {
+    version = "1-230";
+    name = "dynatrace-cluster-schemas-${version}";
+    src = fetchzip {
+      url = "https://github.com/dynatrace-extensions/toolz/releases/download/schema-1230/dt-schemas-1-230.tar";
+      sha256 = "sha256-9jc8HIZiTG9Qk/TULWNx9PAfi8M6Kq9k+7EWoJKgcHE=";
+      stripRoot = false;
+    };
+
+    # TODO: how to better merge it into the environment?
+    installPhase = ''
+      mkdir -p $out/schemas
+      cp * $out/schemas
+      touch ble
+      install -m755 -D ble $out/bin/__dt_cluster_schema
+    '';
+  };
   pythonCore = pkgs.python38;
   myPython = pythonCore.withPackages pythonPkgs;
   env = pkgs.buildEnv {
@@ -76,13 +81,16 @@ let
       gnumake
       yq
       curl
-      zip
-      bzip2
       jq
-      openssl
       myPython
       entr
       commonMake
+
+      bzip2
+      openssl
+      zip
+
+      dtClusterSchema
 
       # datasources
       # temporary disabled, until we figure out how to share it properly
