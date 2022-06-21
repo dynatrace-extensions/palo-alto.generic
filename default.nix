@@ -34,6 +34,26 @@ let
       pyyaml
       jsonschema
     ];
+  dtcli = with pkgs; stdenv.mkDerivation rec {
+    version = "1.1.1";
+    name = "dtcli-${version}";
+    src = fetchurl {
+      url = "https://github.com/dynatrace-oss/dt-cli/releases/download/v${version}/dt";
+      sha256 = "sha256-DJNNGB31SUODhlQYMFwv9CEf0Rm/kOmDdMqTj57p6PY=";
+    };
+
+    unpackPhase = ''
+      true
+    '';
+
+    installPhase = ''
+      install -m755 -D $src $out/bin/dt
+    '';
+
+    meta = with lib; {
+      platforms = platforms.linux;
+    };
+  };
   commonMake = with pkgs; stdenv.mkDerivation rec {
     version = "7a34142faa0fc15b3c3d6653cb19bb825f9efe77";
     name = "commonMake-${version}";
@@ -90,6 +110,7 @@ let
       openssl
       zip
 
+      dtcli
       dtClusterSchema
 
       # datasources
