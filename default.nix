@@ -2,7 +2,7 @@ let
   nixpkgs = builtins.fetchGit {
     url = "https://github.com/nixos/nixpkgs-channels/";
     ref = "refs/heads/nixos-unstable";
-    rev = "e10da1c7f542515b609f8dfbcf788f3d85b14936";
+    rev = "4762fba469e2baa82f983b262e2c06ac2fdaae67"; # 22-06-2022
     # obtain via `git ls-remote https://github.com/nixos/nixpkgs-channels nixos-unstable`
   };
   pkgs = import nixpkgs { config = {}; };
