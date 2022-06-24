@@ -48,7 +48,7 @@ def main():
         invalid = True
         # TODO: add line info
         print(f"{10* '-'} error {i} {10* '-'}", file=sys.stderr)
-        print("location:", error.json_path, file=sys.stderr)
+        print("location:", ".".join(map(str, error.absolute_path)), file=sys.stderr)
         print("cause:", error.message, file=sys.stderr)
 
     if invalid:
