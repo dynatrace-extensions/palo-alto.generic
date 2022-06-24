@@ -12,6 +12,7 @@ SOURCES := $(shell find ./$(SOURCES_DIR)/ ! -type d)
 _ENTRYPOINT := $(SOURCES_DIR)/$(ENTRYPOINT)
 
 # ===== please do not remove this =====
+# sources are at: https://github.com/dynatrace-extensions/toolz/blob/main/common.mk
 include $(shell which __dt_ext_common_make)
 # ===== please do not remove this =====
 
