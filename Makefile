@@ -20,8 +20,8 @@ include $(shell which __dt_ext_common_make)
 # ###############
 .PHONY: lint test
 
-lint: extension.json ## run static analysis
-	./scripts/validate-schema --instance extension.json $(shell dirname $$(which __dt_cluster_schema))/../schemas
+lint: $(_ENTRYPOINT) ## run static analysis
+	./scripts/validate-schema --instance $(_ENTRYPOINT) $(shell dirname $$(which __dt_cluster_schema))/../schemas
 
 extension.json: $(_ENTRYPOINT)
 	yq < $(_ENTRYPOINT) > $@

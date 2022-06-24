@@ -1,7 +1,6 @@
 # intermediate files
 extension.zip
 extension.zip.sig
-extension.json
 
 # artifacts
 bundle.zip
