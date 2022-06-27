@@ -1,36 +1,13 @@
 let
   nixpkgs = builtins.fetchGit {
-    url = "https://github.com/nixos/nixpkgs-channels/";
+    url = "https://github.com/nixos/nixpkgs/";
     ref = "refs/heads/nixos-unstable";
-    rev = "4762fba469e2baa82f983b262e2c06ac2fdaae67"; # 22-06-2022
-    # obtain via `git ls-remote https://github.com/nixos/nixpkgs-channels nixos-unstable`
+    rev = "f2537a505d45c31fe5d9c27ea9829b6f4c4e6ac5"; # 27-06-2022
+    # obtain via `git ls-remote https://github.com/nixos/nixpkgs nixos-unstable`
   };
   pkgs = import nixpkgs { config = {}; };
-  markdown-table = with pkgs.python38Packages; buildPythonPackage rec {
-      pname = "markdown-table";
-      version = "2020.12.3";
-
-      src = fetchPypi{
-        inherit version;
-        inherit pname;
-        sha256 = "0gqr46rh7m6b5qcdmpbxrbvzi0yniaksbak1mcfkn60ldplfh3fz";
-      };
-  };
-  click-aliases = with pkgs.python38Packages; buildPythonPackage rec {
-      pname = "click-aliases";
-      version = "1.0.1";
-
-      src = fetchPypi{
-        inherit version;
-        inherit pname;
-        sha256 = "18q5wya46mdlm2g8x6bcxhzqf09nxy7lbvpqyh1fp207gq3i507l";
-      };
-
-      buildInputs = [ click ];
-  };
   pythonPkgs = python-packages: with python-packages; [
       ptpython # used for dev
-      markdown-table # for building docs
       pyyaml
       jsonschema
     ];
@@ -89,7 +66,7 @@ let
       install -m755 -D ble $out/bin/__dt_cluster_schema
     '';
   };
-  pythonCore = pkgs.python38;
+  pythonCore = pkgs.python39;
   myPython = pythonCore.withPackages pythonPkgs;
   env = pkgs.buildEnv {
     name = "extension-dev-env";
