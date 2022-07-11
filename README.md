@@ -26,5 +26,12 @@ make init
 make help
 ```
 
+### Resources
+- [Extension yaml docs](https://www.dynatrace.com/support/help/extend-dynatrace/extensions20/extension-yaml)
+- [Extension knowledge base](https://www.dynatrace.com/support/help/extend-dynatrace/extensions20)
+
+### Internal tooling
+If you're a **Dynatrace employee** you can follow [this link](https://github.com/dynatrace-extensions/precious-toolz-internal) to enable internal tooling
+
 ## Origin
 This extension is based on EF1 Palo Alto Extension and can be considered a port.
