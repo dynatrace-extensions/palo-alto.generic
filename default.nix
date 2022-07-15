@@ -12,11 +12,11 @@ let
       jsonschema
     ];
   dtcli = with pkgs; stdenv.mkDerivation rec {
-    version = "1.1.1";
+    version = "1.3.1";
     name = "dtcli-${version}";
     src = fetchurl {
       url = "https://github.com/dynatrace-oss/dt-cli/releases/download/v${version}/dt";
-      sha256 = "sha256-DJNNGB31SUODhlQYMFwv9CEf0Rm/kOmDdMqTj57p6PY=";
+      sha256 = "sha256-ZItqfAbrIuayk9A3g8TwXyfig+phu9ZvDVZuDTcgrkY=";
     };
 
     unpackPhase = ''
@@ -32,7 +32,7 @@ let
     };
   };
   commonMake = with pkgs; stdenv.mkDerivation rec {
-    version = "7a34142faa0fc15b3c3d6653cb19bb825f9efe77";
+    version = "ef14536a37f91133e5c4379ff3b2c7611b8150ac";
     name = "commonMake-${version}";
     src = builtins.fetchGit {
       url = "https://github.com/dynatrace-extensions/toolz.git";
