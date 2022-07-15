@@ -10,3 +10,6 @@ result
 
 # dep
 secrets/*
+
+# internal tooling hooks
+dynatrace-internal
