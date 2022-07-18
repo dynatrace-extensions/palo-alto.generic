@@ -8,7 +8,7 @@ For now go for [dev](#dev)
 
 ### Prerequisites
 - Nix-capable environment, for Windows that means [installing WSL](https://docs.microsoft.com/en-us/learn/modules/get-started-with-windows-subsystem-for-linux/2-enable-and-install)
-- [nix](https://nixos.org/download.html)
+- [nix](https://nixos.org/download.html) / [**nix for WSL**](https://nixos.org/download.html#nix-install-windows)
 - `direnv` (`nix-env -iA nixpkgs.direnv`)
 - [configured direnv shell hook ](https://direnv.net/docs/hook.html), yup in your `.bashrc`
 - some form of `make` (`nix-env -iA nixpkgs.gnumake`)
