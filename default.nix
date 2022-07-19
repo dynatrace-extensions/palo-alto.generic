@@ -32,7 +32,7 @@ let
     };
   };
   commonMake = with pkgs; stdenv.mkDerivation rec {
-    version = "ef14536a37f91133e5c4379ff3b2c7611b8150ac";
+    version = "1a61b557d4d7064180d407e1da16e20bd98f02b1";
     name = "commonMake-${version}";
     src = builtins.fetchGit {
       url = "https://github.com/dynatrace-extensions/toolz.git";

@@ -19,10 +19,7 @@ include $(shell test -n "$$DT_EXTENSION_TOOLING_LOC" && echo "$$DT_EXTENSION_TOO
 
 # Porcelain
 # ###############
-.PHONY: lint test
-
-lint: $(_ENTRYPOINT) ## run static analysis
-	dt ext validate-schema --instance $(_ENTRYPOINT) --schema-entrypoint $(shell dirname $$(which __dt_cluster_schema))/../schemas/extension.schema.json
+.PHONY: test
 
 test: ## run all tests
 	@echo "Not implemented"; false
