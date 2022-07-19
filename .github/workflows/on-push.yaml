@@ -13,3 +13,6 @@ jobs:
 
       - name: lint
         run: nix-shell --command "make lint"
+
+      - name: lint
+        run: nix-shell --command "make build"
