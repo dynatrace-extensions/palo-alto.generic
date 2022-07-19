@@ -22,10 +22,7 @@ include $(shell test -n "$$DT_EXTENSION_TOOLING_LOC" && echo "$$DT_EXTENSION_TOO
 .PHONY: lint test
 
 lint: $(_ENTRYPOINT) ## run static analysis
-	./scripts/validate-schema --instance $(_ENTRYPOINT) $(shell dirname $$(which __dt_cluster_schema))/../schemas
-
-extension.json: $(_ENTRYPOINT)
-	yq < $(_ENTRYPOINT) > $@
+	dt ext validate-schema --instance $(_ENTRYPOINT) --schema-entrypoint $(shell dirname $$(which __dt_cluster_schema))/../schemas/extension.schema.json
 
 test: ## run all tests
 	@echo "Not implemented"; false
