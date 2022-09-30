@@ -1,17 +1,16 @@
 name: custom:com.dynatrace.extension.palo-alto.generic
-version: 0.3.2
+version: 0.3.4
 minDynatraceVersion: "1.230"
 author:
   name: Dynatrace
 dashboards:
   - path: "dashboards/palo-alto-generic-default.json"
-
 alerts:
-  - path: "alerts/palo-alto_temperature_max.json"
+  - path: "alerts/palo-alto_fan_speed.json"
   - path: "alerts/palo-alto_temperature_max.json"
 
 metrics:
-    - key: com.dynatrace.extension.palo-alto.generic.sys.uptime.count
+    - key: com.dynatrace.extension.palo-alto.generic.sys.uptime
       metadata:
         displayName: System uptime
         unit: MilliSecond
@@ -128,7 +127,7 @@ snmp:
         metrics:
           - key: com.dynatrace.extension.palo-alto.generic.sys.uptime
             value: oid:1.3.6.1.2.1.1.3.0
-            type: count
+            type: gauge
           - key: com.dynatrace.extension.palo-alto.generic.cpu.management.utilization
             value: oid:1.3.6.1.2.1.25.3.3.1.2.1
             type: gauge

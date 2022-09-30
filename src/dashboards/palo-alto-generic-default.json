@@ -9,7 +9,7 @@
   "dashboardMetadata": {
     "name": "Generic Palo Alto",
     "shared": false,
-    "owner": "olgierd.kasprowicz@dynatrace.com"
+    "owner": "Dynatrace"
   },
   "tiles": [
     {
