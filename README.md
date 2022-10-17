@@ -1,6 +1,53 @@
 # Palo Alto Generic Extension
 First EF2.0 extension targeting Palo Alto firewall devices
 
+**This is intended for users, who:**
+- would like to monitor health state and performance of Palo Alto firewalls 
+
+**This enables you to:**
+- Monitor infrastructure with a comprehensive dashboard 
+- Use SNMP as the data source 
+- Take pre-emptive measures to avoid service degradations 
+
+**The extension package contains:**
+- SNMP DataSource configuration,
+- dashboard template,
+- Unified Analysis screen template,
+- topology definition and entity extraction rules.
+
+**Collected metrics:**
+
+CPU & memory:
+- System uptime
+- Sensor Value
+- CPU Management Plane Utilization
+- CPU System Plane Utilization
+- Memory Size
+- Memory Used
+- Memory Utilization
+
+Gateway:
+- Max Tunnels
+- Active Sessions
+- Max Sessions
+- Sessions - TCP
+- Sessions - UDP
+- Sessions - ICMP
+
+Interfaces:
+- Interface Incoming Data
+- Interface Outgoing Data
+- Interface Incoming Errors
+- Interface Outgoing Errors
+- Interface Incoming Discards
+- Interface Outgoing Discards
+
+Virtual Systems:
+- VSYS - Max Sessions
+- VSYS - Active Sessions
+- VSYS - Session Utilization
+
+
 ## Usage
 For now go for [dev](#dev)
 
