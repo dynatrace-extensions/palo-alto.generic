@@ -1,0 +1,27 @@
+[
+  {
+    "scope": "ag_group-default",
+    "value": {
+      "version": "0.0.1",
+      "description": "local",
+      "enabled": true,
+      "snmp": {
+        "devices": [
+          {
+            "ip": "localhost",
+            "port": 161,
+            "authentication": {
+              "type": "SNMPv2c",
+              "community": "network/firewall/paloalto-pa-5000"
+            }
+          }
+        ]
+      },
+      "featureSets": [
+         "interfaces",
+         "virtual_systems",
+         "gateway"
+      ]
+    }
+  }
+]
