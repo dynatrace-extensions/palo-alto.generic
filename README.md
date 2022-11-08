@@ -1,6 +1,4 @@
 # Palo Alto Generic Extension
-First EF2.0 extension targeting Palo Alto firewall devices
-
 **This is intended for users, who:**
 - would like to monitor health state and performance of Palo Alto firewalls 
 
