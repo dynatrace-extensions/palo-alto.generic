@@ -1,5 +1,5 @@
 name: custom:com.dynatrace.extension.palo-alto.generic
-version: 0.4.0
+version: 0.5.0
 minDynatraceVersion: "1.230"
 author:
   name: Dynatrace
@@ -67,11 +67,25 @@ metrics:
       metadata:
         displayName: Interface Incoming Data
         unit: BitPerSecond
+    - key: func:com.dynatrace.extension.snmp-generic-device.if.hc.in.octets.bitpersec
+      query:
+        metricSelector: '((com.dynatrace.extension.palo-alto.generic.if.hc.in.octets.count) * (8)):rate(1s)'
+      metadata:
+        displayName: Interface incoming data (high capacity)
+        description: Incoming network data on interface in bits per second. This metric uses high capacity octet metrics and should be used for highspeed devices. 
+        unit: BitPerSecond
     - key: func:com.dynatrace.extension.palo-alto.generic.if.out.octets.bitpersec
       query:
         metricSelector: '((com.dynatrace.extension.palo-alto.generic.if.out.octets.count) * (8)):rate(1s)'
       metadata:
         displayName: Interface Outgoing Data
+        unit: BitPerSecond
+    - key: func:com.dynatrace.extension.snmp-generic-device.if.hc.out.octets.bitpersec
+      query:
+        metricSelector: '((com.dynatrace.extension.snmp-generic-device.if.hc.out.octets.count) * (8)):rate(1s)'
+      metadata:
+        displayName: Interface outgoing data (high capacity)
+        description: Outgoing network data on interface in bits per second. This metric uses high capacity octet metrics and should be used for highspeed devices. 
         unit: BitPerSecond
     - key: com.dynatrace.extension.palo-alto.generic.if.in.err.count
       metadata:
@@ -224,9 +238,15 @@ snmp:
           - key: com.dynatrace.extension.palo-alto.generic.if.in.octets
             value: oid:1.3.6.1.2.1.2.2.1.10
             type: count
+          - key: com.dynatrace.extension.palo-alto.generic.if.hc.in.octets.count
+            value: oid:1.3.6.1.2.1.31.1.1.1.6
+            type: count            
           - key: com.dynatrace.extension.palo-alto.generic.if.out.octets
             value: oid:1.3.6.1.2.1.2.2.1.16
             type: count
+          - key: com.dynatrace.extension.snmp-generic-device.if.hc.out.octets.count
+            value: oid:1.3.6.1.2.1.31.1.1.1.10
+            type: count              
           - key: com.dynatrace.extension.palo-alto.generic.if.in.err
             value: oid:1.3.6.1.2.1.2.2.1.14
             type: count
@@ -594,8 +614,8 @@ screens:
               themeColor: DEFAULT
               seriesType: LINE
             metrics:
-              - metricSelector: "func:com.dynatrace.extension.palo-alto.generic.if.in.octets.bitpersec"
-              - metricSelector: "func:com.dynatrace.extension.palo-alto.generic.if.out.octets.bitpersec"
+              - metricSelector: "func:com.dynatrace.extension.palo-alto.generic.if.hc.in.octets.bitpersec"
+              - metricSelector: "func:com.dynatrace.extension.palo-alto.generic.if.hc.out.octets.bitpersec"
           - displayName: "Errors"
             visualization:
               themeColor: DEFAULT
@@ -674,8 +694,8 @@ screens:
               themeColor: DEFAULT
               seriesType: LINE
             metrics:
-              - metricSelector: "func:com.dynatrace.extension.palo-alto.generic.if.in.octets.bitpersec"
-              - metricSelector: "func:com.dynatrace.extension.palo-alto.generic.if.out.octets.bitpersec"
+              - metricSelector: "func:com.dynatrace.extension.palo-alto.generic.if.hc.in.octets.bitpersec"
+              - metricSelector: "func:com.dynatrace.extension.palo-alto.generic.if.hc.out.octets.bitpersec"
           - displayName: "Errors"
             visualization:
               themeColor: DEFAULT
