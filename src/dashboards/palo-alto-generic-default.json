@@ -462,7 +462,7 @@
           "splitBy": [
             "sys.name"
           ],
-          "metricSelector": "com.dynatrace.extension.palo-alto.generic.tunnels.active:splitBy(\"com.dynatrace.extension.palo-alto.generic.sys.name\"):sum:auto:sort(value(avg,descending)):limit(20)",
+          "metricSelector": "com.dynatrace.extension.palo-alto.generic.tunnels.active:splitBy(\"sys.name\"):sum:auto:sort(value(avg,descending)):limit(20)",
           "enabled": true
         }
       ],
@@ -864,7 +864,7 @@
           "splitBy": [
             "sys.name"
           ],
-          "metricSelector": "com.dynatrace.palo-alto.generic.mem_used:splitBy(\"com.dynatrace.extension.palo-alto.generic.sys.name\"):sum:auto:sort(value(avg,descending)):limit(20)",
+          "metricSelector": "com.dynatrace.palo-alto.generic.mem_used:splitBy(\"sys.name\"):sum:auto:sort(value(avg,descending)):limit(20)",
           "enabled": true
         }
       ],
